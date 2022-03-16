@@ -6,8 +6,8 @@ metadata:
   labels:
     app.kubernetes.io/name: ingress-nginx
     app.kubernetes.io/part-of: ingress-nginx
-#  annotations:
-#    service.beta.kubernetes.io/scw-loadbalancer-certificate-ids:
+  annotations:
+    service.beta.kubernetes.io/scw-loadbalancer-certificate-ids: d29e3ddf-9ef3-4a25-ad1c-863010d15718
 spec:
   type: LoadBalancer
   ports:
