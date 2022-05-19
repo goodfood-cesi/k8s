@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-restaurants-deployment
+  labels:
+    app: api-restaurants-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: api-restaurants-deployment
+  template:
+    metadata:
+      labels:
+        app: api-restaurants-deployment
+    spec:
+      containers:
+        - name: api-restaurants
+          image: ghcr.io/goodfood-cesi/api-restaurants:latest
+      imagePullSecrets:
+        - name: ghcr-secret
