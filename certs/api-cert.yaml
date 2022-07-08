@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: api-cert
+  namespace: default
+spec:
+  commonName: api.ksu.li
+  secretName: api-cert
+  dnsNames:
+    - api.ksu.li
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
