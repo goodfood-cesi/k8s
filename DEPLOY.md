@@ -141,11 +141,11 @@ There are two endpoints actually: one for the whole apis and one for the fronten
 They are stored in the `certs/` directory Apply them using `kubectl`:
 
 ```bash
-$ kubectl create -f api-cert.yaml
+$ kubectl create -f certs/api-cert.yaml
 certificate.cert-manager.io/api-cert created
 ```
 ```bash
-$ kubectl create -f front-cert.yaml
+$ kubectl create -f certs/front-cert.yaml
 certificate.cert-manager.io/api-cert created
 ```
 
@@ -158,3 +158,5 @@ $ kubectl create -f ingresses.yaml
 ingress.networking.k8s.io/front-ingress created
 ingress.networking.k8s.io/api-ingress created
 ```
+
+That's it... You're live :)
