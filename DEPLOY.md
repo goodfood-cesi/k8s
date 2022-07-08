@@ -66,32 +66,7 @@ $ kubectl create -f .kube/deployment.yaml
 
 Cert-manager is in charge of creating Let’s Encrypt TLS certificates to make your website secure.
 
-- Modify the default Traefik 2 daemonset running on Kapsule to do that, add `--entrypoints.websecure.http.tls` in the cmd stanza.
-
-```bash
-$ kubectl edit ds traefik -n kube-system
-daemonset.apps/traefik edited
-[]
-        - --global.checknewversion
-        - --global.sendanonymoususage
-        - --entryPoints.traefik.address=:9000
-        - --entryPoints.web.address=:8000
-        - --entryPoints.websecure.address=:8443
-        - --entrypoints.websecure.http.tls
-        - --api.dashboard=true
-        - --ping=true
-        - --providers.kubernetescrd
-        - --providers.kubernetesingress
-[]
-```
-
-- Delete the existing Traefik pods in order to get the new arguments.
-
-```bash
-$ kubectl -n kube-system delete pod -l app.kubernetes.io/name=traefik
-```
-
-- Use the command below to install cert-manager and its needed CRD (Custom Resource Definitions):
+Use the command below to install cert-manager and its needed CRD (Custom Resource Definitions):
 
 ```bash
 $ kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v1.8.2/cert-manager.yaml
