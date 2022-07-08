@@ -24,7 +24,7 @@ $ kubectl apply -f secrets.yaml
 - Add an argument to enable TLS :
 ```bash
 additionalArguments:
-  - "--entryPoints.websecure.http.tls=true"
+  - "--entryPoints.websecure.http.tls"
 ```
 - Enter the name traefik for the application and type the kube-system namespace name.
 - Click Deploy an application to deploy the Load Balancer on your cluster.
