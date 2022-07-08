@@ -70,16 +70,17 @@ Use the command below to install cert-manager and its needed CRD (Custom Resourc
 
 ```bash
 $ kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v1.8.2/cert-manager.yaml
+namespace/cert-manager created
 customresourcedefinition.apiextensions.k8s.io/certificaterequests.cert-manager.io created
 customresourcedefinition.apiextensions.k8s.io/certificates.cert-manager.io created
 customresourcedefinition.apiextensions.k8s.io/challenges.acme.cert-manager.io created
 customresourcedefinition.apiextensions.k8s.io/clusterissuers.cert-manager.io created
 customresourcedefinition.apiextensions.k8s.io/issuers.cert-manager.io created
 customresourcedefinition.apiextensions.k8s.io/orders.acme.cert-manager.io created
-namespace/cert-manager created
 serviceaccount/cert-manager-cainjector created
 serviceaccount/cert-manager created
 serviceaccount/cert-manager-webhook created
+configmap/cert-manager-webhook created
 clusterrole.rbac.authorization.k8s.io/cert-manager-cainjector created
 clusterrole.rbac.authorization.k8s.io/cert-manager-controller-issuers created
 clusterrole.rbac.authorization.k8s.io/cert-manager-controller-clusterissuers created
@@ -89,6 +90,9 @@ clusterrole.rbac.authorization.k8s.io/cert-manager-controller-challenges created
 clusterrole.rbac.authorization.k8s.io/cert-manager-controller-ingress-shim created
 clusterrole.rbac.authorization.k8s.io/cert-manager-view created
 clusterrole.rbac.authorization.k8s.io/cert-manager-edit created
+clusterrole.rbac.authorization.k8s.io/cert-manager-controller-approve:cert-manager-io created
+clusterrole.rbac.authorization.k8s.io/cert-manager-controller-certificatesigningrequests created
+clusterrole.rbac.authorization.k8s.io/cert-manager-webhook:subjectaccessreviews created
 clusterrolebinding.rbac.authorization.k8s.io/cert-manager-cainjector created
 clusterrolebinding.rbac.authorization.k8s.io/cert-manager-controller-issuers created
 clusterrolebinding.rbac.authorization.k8s.io/cert-manager-controller-clusterissuers created
@@ -96,6 +100,9 @@ clusterrolebinding.rbac.authorization.k8s.io/cert-manager-controller-certificate
 clusterrolebinding.rbac.authorization.k8s.io/cert-manager-controller-orders created
 clusterrolebinding.rbac.authorization.k8s.io/cert-manager-controller-challenges created
 clusterrolebinding.rbac.authorization.k8s.io/cert-manager-controller-ingress-shim created
+clusterrolebinding.rbac.authorization.k8s.io/cert-manager-controller-approve:cert-manager-io created
+clusterrolebinding.rbac.authorization.k8s.io/cert-manager-controller-certificatesigningrequests created
+clusterrolebinding.rbac.authorization.k8s.io/cert-manager-webhook:subjectaccessreviews created
 role.rbac.authorization.k8s.io/cert-manager-cainjector:leaderelection created
 role.rbac.authorization.k8s.io/cert-manager:leaderelection created
 role.rbac.authorization.k8s.io/cert-manager-webhook:dynamic-serving created
@@ -108,7 +115,7 @@ deployment.apps/cert-manager-cainjector created
 deployment.apps/cert-manager created
 deployment.apps/cert-manager-webhook created
 mutatingwebhookconfiguration.admissionregistration.k8s.io/cert-manager-webhook created
-validatingwebhookconfiguration.admissionregistration.k8s.io/cert-manager-webhook created 
+validatingwebhookconfiguration.admissionregistration.k8s.io/cert-manager-webhook created
 ```
 
 ## Creating the Let's Encrypt issuer
@@ -121,7 +128,7 @@ validatingwebhookconfiguration.admissionregistration.k8s.io/cert-manager-webhook
 The file can be found in `certs/issuer.yaml` and you must use `kubectl` to apply the configuration :
 
 ```bash
-$ kubectl create -f cluster-issuer.yaml
+$ kubectl create -f certs/issuer.yaml
 clusterissuer.cert-manager.io/letsencrypt-prod created
 ```
 
