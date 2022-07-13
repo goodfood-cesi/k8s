@@ -2,4 +2,4 @@
 
 ### Deployment
 
-Please read the file `DEPLOY.md` yo deploy your app on SCW.
+Please read the file `DEPLOY.md` to deploy your app on SCW.
